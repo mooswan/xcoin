@@ -1,0 +1,8 @@
+﻿type,function,coins,uses,rate,fee,poke_unread_percent,net_thb
+merchant,Message Poke,1500,100,80,30,100,656.25
+merchant,Deal Poke,2500,50,80,30,100,546.875
+merchant,Boost Deal · 1 วัน,7900,30,80,30,0,2073.75
+creator,Profile Boost · 1 วัน,1000,100,80,30,0,875
+creator,Priority Apply,1600,50,80,30,0,700
+customer,Mini Deal,1600,100,80,30,0,1400
+customer,Standard Deal,3200,50,80,30,0,1400

@@ -1,0 +1,154 @@
+/* Black / navy / sky-blue presentation theme. Presentation only: no state or pricing changes. */
+:root{color-scheme:dark;--ink:#edf5ff;--muted:#9bbcdc;--paper:#070b14;--white:#101927;--line:#152b45;--orange:#38bdf8;--pale:#101b2c;--green:#9bbcdc}
+html,body{background:#070b14;color:#edf5ff}
+::selection{background:#0369a1;color:#e5f1fc}
+.easy-app.easy-app{color-scheme:dark;--e-ink:#edf5ff;--e-muted:#bed8ee;--e-line:#152b45;--e-orange:#38bdf8;--e-soft:#101b2c;background:#070b14;color:var(--e-ink)}
+.easy-app .easy-top-label,.easy-app .easy-detail-link,.easy-app .easy-intro>span,.easy-app .easy-back,.easy-app .easy-footer,.easy-app .easy-footer a{color:#bed8ee}
+.easy-app .easy-topics button{background:#101b2c;color:#bed8ee;border-color:#152b45}
+.easy-app .easy-topics button>span{background:#152b45;color:#bed8ee}
+.easy-app .easy-topics button.current{background:#10304a;border-color:#38bdf8;color:#e5f1fc}
+.easy-app .easy-topics button.current>span{background:#7dd3fc;color:#061426}
+.easy-app .easy-stage{background:#101927;border-color:#152b45}
+.easy-app .easy-kicker{color:#7dd3fc}
+.easy-app .easy-first-example{border-color:#2d4c6d}
+.easy-app .easy-payment{background:#101b2c}
+.easy-app .easy-payment>span,.easy-app .easy-payment p,.easy-app .easy-payment-foot{color:#bed8ee}
+.easy-app .easy-payment-foot{border-color:#2d4c6d}
+.easy-app .easy-price{color:#edf5ff}
+.easy-app .easy-benefits{background:#101b2c}
+.easy-app .easy-benefits h2{color:#edf5ff}
+.easy-app .easy-benefits svg,.easy-app .easy-list-no,.easy-app .easy-ref>svg{color:#7dd3fc}
+.easy-app .easy-benefits .easy-extra{color:#bed8ee;border-color:#152b45}
+.easy-app .easy-takeaway{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-takeaway>b,.easy-app .easy-takeaway strong{color:#bed8ee}
+.easy-app .easy-takeaway p{color:#bed8ee}
+.easy-app .easy-fold{background:#101927;border-color:#152b45}
+.easy-app .easy-fold summary{color:#e5f1fc}
+.easy-app .easy-fold[open] summary{background:#101b2c;border-color:#152b45}
+.easy-app .easy-fold>p{color:#bed8ee}
+.easy-app .easy-primary{background:#38bdf8;border-color:#38bdf8;color:#04121e;font-weight:650}
+.easy-app .easy-primary:hover{background:#7dd3fc}
+.easy-app .easy-secondary{background:#101b2c;border-color:#5682ab;color:#bed8ee}
+.easy-app .easy-secondary:hover{background:#152b45}
+.easy-app .easy-bottom-nav>span{color:#9bbcdc}
+.easy-app .easy-role button{border-color:#2d4c6d;color:#bed8ee}
+.easy-app .easy-role button.chosen{background:#152b45;border-color:#9bbcdc;color:#e5f1fc}
+.easy-app .easy-action-list>div>b{color:#bed8ee}
+.easy-app .easy-action-list small{color:#9bbcdc}
+.easy-app .easy-inline-link{color:#7dd3fc}
+.easy-app .easy-ref{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-ref small{color:#9bbcdc}
+.easy-app .easy-demo-note{background:#101b2c;border-color:#2d4c6d;color:#bed8ee}
+.easy-app .easy-wallet{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-wallet span{color:#bed8ee}
+.easy-app .easy-wallet b{color:#e5f1fc}
+.easy-app .easy-field-label{color:#bed8ee}
+.easy-app .easy-type-buttons button{background:#101b2c;border-color:#2d4c6d;color:#bed8ee}
+.easy-app .easy-type-buttons span{color:#9bbcdc}
+.easy-app .easy-type-buttons button.chosen{background:#101b2c;border-color:#38bdf8;color:#bed8ee}
+.easy-app .easy-message{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-shop-icon{background:#152b45;color:#bed8ee}
+.easy-app .easy-message small{color:#9bbcdc}
+.easy-app .easy-message p{color:#bed8ee}
+.easy-app .easy-attached{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-attached span{color:#9bbcdc}
+.easy-app .easy-poke-help{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-poke-help b{color:#bed8ee}
+.easy-app .easy-poke-help p{color:#bed8ee}
+.easy-app .easy-reset{color:#9bbcdc}
+.easy-app .easy-result{background:#152b45;border-color:#5682ab}
+.easy-app .easy-result h3{color:#e5f1fc}
+.easy-app .easy-result p{color:#bed8ee}
+.easy-app .easy-outcomes>span{color:#9bbcdc}
+.easy-app .easy-history-row{border-color:#2d4c6d}
+.easy-app .easy-history-row b{color:#bed8ee}
+.easy-app .easy-income{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-income select{background:#101b2c;color:#e5f1fc;border-color:#5682ab}
+.easy-app .easy-receipt{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-receipt>div{color:#bed8ee}
+.easy-app .easy-receipt .easy-receipt-total{border-color:#2d4c6d;color:#bed8ee}
+.easy-app .easy-receipt>p{color:#9bbcdc}
+.easy-app .easy-rate-table>div{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-rate-table span{color:#bed8ee}
+.easy-app .easy-rate-table small{color:#bed8ee}
+.easy-app .easy-benefit-list svg{color:#9bbcdc}
+.easy-app .easy-packages>button{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-packages>button.chosen{background:#101b2c;border-color:#38bdf8;box-shadow:0 0 0 1px #38bdf8}
+.easy-app .easy-packages>button>span{color:#bed8ee}
+.easy-app .easy-packages>button>span small,.easy-app .easy-packages>button>b>small{color:#9bbcdc}
+.easy-app .easy-packages>button>b{color:#edf5ff}
+.easy-app .easy-packages>button>p{color:#7dd3fc}
+.easy-app .easy-packages .easy-pack-select{border-color:#2d4c6d;color:#bed8ee}
+.easy-app .easy-package-detail{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-two-pockets>div{background:#101b2c;border-color:#2d4c6d}
+.easy-app .easy-two-pockets>div>svg{color:#bed8ee}
+.easy-app .easy-two-pockets b{color:#7dd3fc}
+.easy-app .easy-two-pockets strong{color:#bed8ee}
+.easy-app .easy-small-note{color:#9bbcdc!important}
+/* Complete detail view follows the same dark palette. */
+.app{background:#070b14;color:#edf5ff;min-height:100vh}
+.app .sidebar,.app header{background:#0b1321;border-color:#152b45}
+.app .brand,.app h1,.app h2,.app h3{color:#edf5ff}
+.app .sidebar nav button{color:#bed8ee}
+.app .sidebar nav button:hover{background:#101b2c}
+.app .sidebar nav button.active{background:#101b2c;color:#bed8ee}
+.app .avatar{background:#152b45;color:#bed8ee}
+.app .wallet-pill,.app .panel,.app .model-comparison,.app .package,.app .orbit-tag{background:#101b2c;border-color:#152b45;color:#e5f1fc}
+.app .eyebrow,.app .micro,.app .muted,.app .rules li,.app .perks p,.app .sidebar-bottom p,.app .breadcrumb>span{color:#9bbcdc}
+.app .ecosystem{background:radial-gradient(ellipse at center,#152b4580 0%,#101b2c00 68%)}
+.app .orbit{border-color:#2d4c6d}
+.app .orbit-tag>svg,.app .orbit-tag small{color:#bed8ee}
+.app .btn.primary{background:#38bdf8;color:#04121e;font-weight:650}
+.app .btn.primary:hover{background:#7dd3fc}
+.app .btn.secondary,.app .role-tabs button.active,.app .rate-control button.selected{background:#152b45;border-color:#5682ab;color:#e5f1fc}
+.app .rate-card{border-color:#2d4c6d;background:#101b2c}
+.app .rate-card.chosen{background:#101b2c;border-color:#9bbcdc}
+.app .rate-card p{border-color:#2d4c6d;color:#9bbcdc}
+.app .rate-card p strong,.app .pack-net strong{color:#e5f1fc}
+.app .rate-card>div>span,.app .rate-card>b>small,.app .role-banner p{color:#9bbcdc}
+.app .dark-card,.app .net-card{background:#101b2c;border:1px solid #2d4c6d}
+.app .dark-card p,.app .net-card>p{color:#bed8ee}
+.app .role-banner,.app .referral-panel,.app .economics-controls{background:#101b2c;border-color:#2d4c6d}
+.app .role-tabs,.app .rate-control{background:#101b2c;border-color:#2d4c6d}
+.app .rate-control button{color:#bed8ee}
+.app th,.app tfoot,.app .empty,.app .example-flow{background:#101b2c;color:#bed8ee;border-color:#2d4c6d}
+.app td,.app .perks,.app .wallet-grid,.app .history-item,.app .profile{border-color:#152b45}
+.app td small,.app .wallet-grid>div>span,.app .pack-net,.app .perks b,.app .package h3 small,.app .qty{color:#bed8ee}
+.app .coin-text,.app .pack-coins{color:#7dd3fc}
+.app .refund-panel{background:#101b2c;border-color:#2d4c6d}
+.app .pick{background:#152b45;border-color:#5682ab;color:#bed8ee}
+.app .outline-badge{border-color:#2d4c6d;color:#bed8ee}
+.app .status{background:#152b45;color:#bed8ee}
+.app .status.read,.app .status.refunded{background:#152b45;color:#bed8ee}
+.app .status.expired-free{background:#152b45;color:#bed8ee}
+.app .qty{background:#101b2c;border-color:#2d4c6d}
+.app .bar-track{background:#152b45}
+.app .bar-track>div{background:#5682ab}
+.app .is-current .bar-track>div{background:#9bbcdc}
+.app .ref-code{border-color:#5682ab}
+.app .ref-reward{border-color:#2d4c6d}
+.app .ref-reward>span,.app .bar-row span,.app .type-totals span{color:#bed8ee}
+.app dialog{background:#101b2c;color:#e5f1fc;border-color:#2d4c6d}
+.app dialog::backdrop{background:#030711b8}
+.app .close-dialog{background:#152b45;color:#bed8ee}
+.app .poke-form label{color:#bed8ee}
+.app .poke-form select,.app .poke-form textarea{background:#101b2c;border-color:#2d4c6d;color:#e5f1fc}
+.app .creator-preview,.app .send-summary{background:#152b45;border-color:#2d4c6d;color:#bed8ee}
+.app .send-summary b{color:#bed8ee}
+.app .phone{background:#101b2c;border-color:#5682ab}
+.app .incoming{background:#101b2c;border-color:#2d4c6d}
+.app .phone-brand,.app .incoming p{color:#e5f1fc}
+.app .shop small,.app .phone-brand>span,.app .phone-note,.app .phone-top{color:#bed8ee}
+.app .incoming>button{background:#152b45;color:#e5f1fc}
+.app .shop .avatar{background:#2d4c6d;color:#bed8ee}
+.app .deal-preview{background:#152b45;border-color:#5682ab}
+.app .deal-preview small{color:#bed8ee}
+.app .error{background:#152b45;border-color:#5682ab;color:#bed8ee}
+.app .toast{background:#152b45;border-color:#5682ab;color:#e5f1fc}
+.app .scrim{background:#030711a8}
+/* Blue accents also cover the detailed coin illustration. */
+.app .central-coin{background:#38bdf8;border-color:#0284c7;box-shadow:9px 12px 0 #075985,15px 24px 30px #02061733,inset 0 0 0 2px #bae6fd;color:#082f49}
+.app .dark-card em,.app .notification-type,.app .deal-preview>span,.app .rate-card>div small,.app .ref-reward>svg,.app .beyond-items>div>span,.app .journey-row>div>span{color:#7dd3fc}
+.app .breadcrumb>a{color:#7dd3fc!important}
+/* Preserve keyboard visibility on every dark surface. */
+.easy-app :is(button,a,summary,select):focus-visible,.app :is(button,a,input,textarea,select):focus-visible{outline:3px solid #7dd3fc;outline-offset:3px}
