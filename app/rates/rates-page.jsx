@@ -10,6 +10,8 @@ const PCTS=[70,80,100];
 
 const n0=v=>Math.round(v).toLocaleString('th-TH');
 const n2=v=>v.toLocaleString('th-TH',{minimumFractionDigits:2,maximumFractionDigits:2});
+const hue=p=>`hsl(${330-1.9*Math.max(0,Math.min(100,p))} 85% 70%)`;
+const pill=p=>({color:hue(p),background:`hsl(${330-1.9*Math.max(0,Math.min(100,p))} 85% 70% / .15)`});
 const pc=v=>(v*100).toLocaleString('th-TH',{maximumFractionDigits:1})+'%';
 
 function calc(amount,pct,{full,fee,vat}){
@@ -27,6 +29,17 @@ function Num({value,onChange,step=1,min=0,w}){
   return <input className="rt-num" style={w?{width:w}:undefined} type="number" inputMode="decimal" min={min} step={step} value={value} onChange={e=>onChange(e.target.value===''?'':Number(e.target.value))}/>;
 }
 
+function Slider({value,onChange,presets=[],max=100,step=1,size}){
+  const v=Number(value)||0,pct=Math.max(0,Math.min(max,v))/max*100;
+  return <div className={'rt-slider'+(size?' '+size:'')}>
+    <div className="rt-slider-row">
+      <input type="range" min={0} max={max} step={step} value={v} onChange={e=>onChange(Number(e.target.value))} style={{'--fill':pct+'%','--c':hue(v)}} aria-label="เปอร์เซ็นต์"/>
+      <span className="rt-slider-val" style={{color:hue(v)}}>{v}%</span>
+    </div>
+    {presets.length>0&&<div className="rt-slider-presets">{presets.map(p=><button key={p} className={v===p?'on':''} style={{left:p/max*100+'%'}} onClick={()=>onChange(p)}>{p}</button>)}</div>}
+  </div>;
+}
+
 function Table({rows,s,tiered,base}){
   const tot=rows.reduce((a,r)=>({amount:a.amount+r.amount,coins:a.coins+r.coins,coinValue:a.coinValue+r.coinValue,vatAmt:a.vatAmt+r.vatAmt,feeAmt:a.feeAmt+r.feeAmt,net:a.net+r.net}),{amount:0,coins:0,coinValue:0,vatAmt:0,feeAmt:0,net:0});
   return <div className="rt-tablewrap"><table className="rt-table">
@@ -36,7 +49,7 @@ function Table({rows,s,tiered,base}){
     </tr></thead>
     <tbody>{rows.map((r,i)=>{const bonus=tiered?r.coins-Math.round(r.amount*base):0;return <tr key={i}>
       <td className="rt-strong">{n0(r.amount)}</td>
-      <td><span className={'rt-pill p'+r.pct}>{r.pct}%</span></td>
+      <td><span className="rt-pill" style={pill(r.pct)}>{r.pct}%</span></td>
       <td>{n0(r.perBaht)}</td>
       <td className="rt-strong rt-coin">{n0(r.coins)}</td>
       {tiered&&<td className={bonus>0?'rt-pos':'rt-dim'}>{bonus>0?'+'+n0(bonus):'—'}</td>}
@@ -53,7 +66,7 @@ function Table({rows,s,tiered,base}){
 
 function ResultCard({title,r,s}){
   return <div className="rt-card">
-    <div className="rt-card-head"><b>{title}</b><span className={'rt-pill p'+r.pct}>{r.pct}%</span></div>
+    <div className="rt-card-head"><b>{title}</b><span className="rt-pill" style={pill(r.pct)}>{r.pct}%</span></div>
     <div className="rt-big">{n0(r.coins)} <span>X</span></div>
     <dl>
       <dt>มูลค่าเหรียญ (อัตราเต็ม)</dt><dd>฿{n2(r.coinValue)}</dd>
@@ -83,10 +96,11 @@ export default function RatesPage(){
   const tierRows=list.map(a=>calc(a,tierFor(a,sortedTiers).pct,s));
   const basePerBaht=s.full*(sortedTiers[0]?.pct||0)/100;
   const t=Number(tryAmt)||0;
+  const cmp=[...new Set([...PCTS,fixedPct])].sort((a,b)=>a-b);
 
   const addAmt=()=>{const v=Number(newAmt);if(v>0&&!amounts.includes(v))setAmounts([...amounts,v]);setNewAmt('')};
   const setTier=(i,k,v)=>setTiers(tiers.map((x,j)=>j===i?{...x,[k]:v}:x));
-  const addTier=()=>{const last=sortedTiers[sortedTiers.length-1]||{min:0,pct:70};setTiers([...tiers,{id:++tierId,min:last.min+1000,pct:Math.min(last.pct+10,150)}])};
+  const addTier=()=>{const last=sortedTiers[sortedTiers.length-1]||{min:0,pct:70};setTiers([...tiers,{id:++tierId,min:last.min+1000,pct:Math.min(last.pct+10,100)}])};
 
   return <div className="rt-app">
     <header className="rt-top">
@@ -97,9 +111,7 @@ export default function RatesPage(){
     <div className="rt-sticky">
       <div className="rt-settings">
         <label>อัตราเต็ม <span className="rt-eq">฿1 =</span><Num value={full} onChange={setFull} w={84}/><span>X</span></label>
-        <label>ค่าธรรมเนียมอินแอป <Num value={fee} onChange={setFee} step={0.5} w={70}/><span>%</span>
-          <span className="rt-chips">{[0,15,30].map(v=><button key={v} className={Number(fee)===v?'on':''} onClick={()=>setFee(v)}>{v}%</button>)}</span>
-        </label>
+        <div className="rt-fee"><span>ค่าธรรมเนียมอินแอป</span><Slider value={fee} onChange={setFee} presets={[0,15,30]} size="sm"/></div>
         <label className="rt-check"><input type="checkbox" checked={vat} onChange={e=>setVat(e.target.checked)}/> หัก VAT 7% ก่อน</label>
       </div>
     </div>
@@ -124,14 +136,14 @@ export default function RatesPage(){
           <span className="rt-tag">รูปแบบที่ 1</span>
           <h2>อัตราแลกเดียว (Fixed Rate)</h2>
         </div>
-        <div className="rt-seg">{PCTS.map(p=><button key={p} className={fixedPct===p?'on':''} onClick={()=>setFixedPct(p)}>{p}%<small>฿1 = {n0(s.full*p/100)} X</small></button>)}</div>
+        <div className="rt-fixed"><Slider value={fixedPct} onChange={setFixedPct} presets={[0,50,70,80,100]} size="lg"/><div className="rt-fixed-eq">฿1 = <b>{n0(s.full*fixedPct/100)}</b> X</div></div>
         <Table rows={fixedRows} s={s}/>
 
-        <h3 className="rt-sub">เทียบ 70% / 80% / 100% ทุกยอดเติม</h3>
+        <h3 className="rt-sub">เทียบ {cmp.join('% / ')}% ทุกยอดเติม</h3>
         <div className="rt-tablewrap"><table className="rt-table rt-compact">
-          <thead><tr><th rowSpan={2}>ยอดเติม (฿)</th>{PCTS.map(p=><th key={p} colSpan={2} className={'rt-colgroup p'+p}>{p}%</th>)}</tr>
-          <tr>{PCTS.map(p=><Fragment key={p}><th>เหรียญ</th><th>แอปเหลือ / มูลค่าเหรียญ</th></Fragment>)}</tr></thead>
-          <tbody>{list.map(a=><tr key={a}><td className="rt-strong">{n0(a)}</td>{PCTS.map(p=>{const r=calc(a,p,s);return <Fragment key={p}><td className="rt-coin">{n0(r.coins)}</td><td className={r.netVsCoin>=1?'rt-pos':'rt-neg'}>{pc(r.netVsCoin)}</td></Fragment>})}</tr>)}</tbody>
+          <thead><tr><th rowSpan={2}>ยอดเติม (฿)</th>{cmp.map(p=><th key={p} colSpan={2} className="rt-colgroup" style={{color:hue(p),borderColor:hue(p)}}>{p}%{p===fixedPct?' ●':''}</th>)}</tr>
+          <tr>{cmp.map(p=><Fragment key={p}><th>เหรียญ</th><th>แอปเหลือ / มูลค่าเหรียญ</th></Fragment>)}</tr></thead>
+          <tbody>{list.map(a=><tr key={a}><td className="rt-strong">{n0(a)}</td>{cmp.map(p=>{const r=calc(a,p,s);return <Fragment key={p}><td className="rt-coin">{n0(r.coins)}</td><td className={r.netVsCoin>=1?'rt-pos':'rt-neg'}>{pc(r.netVsCoin)}</td></Fragment>})}</tr>)}</tbody>
         </table></div>
       </section>
 
@@ -146,7 +158,7 @@ export default function RatesPage(){
           {tiers.map((tr,i)=>{const mn=Number(tr.min)||0,pt=Number(tr.pct)||0;const next=sortedTiers.find(x=>x.min>mn);const rank=sortedTiers.findIndex(x=>x.min===mn)+1;return <div className="rt-tier" key={tr.id}>
             <span className="rt-tier-no">ขั้น {rank}</span>
             <div className="rt-tier-range">ตั้งแต่ ฿<Num value={tr.min} onChange={v=>setTier(i,'min',v)} w={90}/>{next?<span>ถึง ฿{n0(next.min-1)}</span>:<span>ขึ้นไป</span>}</div>
-            <div className="rt-tier-rate">อัตรา <Num value={tr.pct} onChange={v=>setTier(i,'pct',v)} w={70}/>%<span className="rt-dim">= ฿1 → {n0(s.full*pt/100)} X</span></div>
+            <div className="rt-tier-rate"><Slider value={tr.pct} onChange={v=>setTier(i,'pct',v)} presets={[70,80,100]}/><span className="rt-dim">฿1 → {n0(s.full*pt/100)} X</span></div>
             {tiers.length>1&&<button className="rt-x" aria-label="ลบขั้น" onClick={()=>setTiers(tiers.filter((_,j)=>j!==i))}><X size={14}/></button>}
           </div>})}
           <div className="rt-tier-actions">
@@ -156,7 +168,7 @@ export default function RatesPage(){
         </div>
 
         <div className="rt-ladder">{list.map(a=>{const r=tierRows.find(x=>x.amount===a);return <div key={a} className="rt-bar">
-          <div className={'rt-bar-fill p'+r.pct} style={{height:Math.max(6,Math.min(100,r.pct))+'%'}}><span>{r.pct}%</span></div>
+          <div className="rt-bar-fill" style={{background:hue(r.pct),height:Math.max(6,Math.min(100,r.pct))+'%'}}><span>{r.pct}%</span></div>
           <small>฿{n0(a)}</small>
         </div>})}</div>
 
