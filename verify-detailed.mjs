@@ -8,7 +8,7 @@ const context=await browser.newContext({viewport:{width:1440,height:1000}});
 const page=await context.newPage();const errors=[],checks=[];
 page.on('pageerror',e=>errors.push(e.message));page.on('console',m=>{if(m.type()==='error')errors.push(m.text())});
 const check=(name,ok)=>{assert.ok(ok,name);checks.push(name)};
-await page.goto('http://127.0.0.1:3000/details.html');await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(2200);await page.waitForFunction(()=>[...document.querySelectorAll('.enter')].every(e=>getComputedStyle(e).opacity==='1'));
+await page.goto('http://127.0.0.1:3000/details/');await page.evaluate(()=>document.fonts.ready);await page.waitForTimeout(2200);await page.waitForFunction(()=>[...document.querySelectorAll('.enter')].every(e=>getComputedStyle(e).opacity==='1'));
 await page.screenshot({path:'evidence/overview-desktop.png',fullPage:true});
 check('Thai font loaded',await page.evaluate(()=>document.fonts.check('400 16px StudioThai')));
 const state=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('kolx-studio-v1')));
@@ -34,7 +34,7 @@ await page.setViewportSize({width:390,height:844});await page.evaluate(()=>local
 for(const n of ['สำหรับร้านค้า','สำหรับ Creator','สำหรับลูกค้า','จำลองรายรับ','แพ็กเกจ & สิทธิ์ฟรี']){await page.getByRole('button',{name:'เปิดเมนู',exact:true}).click();await page.locator('nav').getByRole('button',{name:n,exact:true}).click();await page.waitForTimeout(600);check('Mobile no page overflow '+n,await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));}
 await page.getByRole('button',{name:'เปิดเมนู',exact:true}).click();await page.locator('nav').getByRole('button',{name:'สำหรับร้านค้า',exact:true}).click();await page.getByRole('button',{name:'สร้าง Poke',exact:true}).click();await page.screenshot({path:'evidence/poke-mobile.png'});await page.getByRole('button',{name:'ยืนยันส่ง Poke',exact:true}).click();check('Mobile Poke action works',(await state()).free===1);
 await context.close();
-const reduced=await browser.newContext({reducedMotion:'reduce',viewport:{width:1440,height:900}});const rp=await reduced.newPage();await rp.goto('http://127.0.0.1:3000/details.html');await rp.waitForTimeout(400);check('Reduced motion shows content',await rp.locator('.hero').evaluate(e=>getComputedStyle(e).opacity==='1'));await reduced.close();await browser.close();
+const reduced=await browser.newContext({reducedMotion:'reduce',viewport:{width:1440,height:900}});const rp=await reduced.newPage();await rp.goto('http://127.0.0.1:3000/details/');await rp.waitForTimeout(400);check('Reduced motion shows content',await rp.locator('.hero').evaluate(e=>getComputedStyle(e).opacity==='1'));await reduced.close();await browser.close();
 check('Unit math matches screenshot model',revenue(scenario.reduce((s,r)=>s+r[2]*r[3],0),80,30)===8855);
 check('80 vs 100 uplift is 25 percent',100/80-1===.25);
 check('Insufficient balance is blocked',!!pokeCheck({open:true,activeDeal:true,type:'message',now:50,balance:100,cost:1500,free:false}));

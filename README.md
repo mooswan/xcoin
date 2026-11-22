@@ -14,7 +14,7 @@ Interactive Thai proposal built with Next.js, Tailwind CSS and GSAP. The product
 
 The original URL now opens a five-topic guided explanation in Thai: what coins are, who uses them, a simple Poke example, real package cash proceeds, and package selection. No sidebar, giant pricing table, or rate controls appear on the first screen. Technical terms are explained in everyday Thai. Advanced exchange-rate and revenue details are collapsed until requested.
 
-The full original interface remains at `/details.html`, with a link back to the simple homepage. The simple examples use isolated React state that resets on reload; they do not modify the detailed localStorage wallet.
+The full original interface remains at `/details/`, with a link back to the simple homepage. The simple examples use isolated React state that resets on reload; they do not modify the detailed localStorage wallet.
 
 Run `node verify-easy.mjs` for the simple version (44 checks, evidence in `evidence-v2/`). Run `node verify-detailed.mjs` or `node verify.mjs` for the retained full version (39 checks, evidence in `evidence/`).
 
