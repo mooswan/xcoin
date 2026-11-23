@@ -112,7 +112,7 @@ export default function RatesPage(){
       <div className="rt-settings">
         <label>อัตราเต็ม <span className="rt-eq">฿1 =</span><Num value={full} onChange={setFull} w={84}/><span>X</span></label>
         <div className="rt-fee"><span>ค่าธรรมเนียมอินแอป</span><Slider value={fee} onChange={setFee} presets={[0,15,30]} size="sm"/></div>
-        <label className="rt-check"><input type="checkbox" checked={vat} onChange={e=>setVat(e.target.checked)}/> หัก VAT 7% ก่อน</label>
+        <label className={'rt-check'+(vat?' on':'')}><input type="checkbox" checked={vat} onChange={e=>setVat(e.target.checked)}/> หัก VAT 7%<small>{vat?'หักแล้ว':'ไม่หัก'}</small></label>
       </div>
     </div>
 
